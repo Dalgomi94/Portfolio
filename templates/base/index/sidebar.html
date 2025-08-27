@@ -1,0 +1,30 @@
+{% load static %}
+
+<aside class="sidebar">
+    <div class="sidebar-top">
+        <div class="title-left">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 7h18M3 12h18M3 17h18"/>
+            </svg>
+            <span>카테고리</span>
+        </div>
+        <button id="btnAddCat" class="ghost" title="카테고리 추가">
+            <img src="{% static 'img/plus_icon.svg' %}" alt="Plus Icon" class="icon" id="plusicon-dark"
+                 style="display: none"/>
+            <img src="{% static 'img/plus_icon_white.svg' %}" alt="Plus Icon" class="icon" id="plusicon-light"
+                 style="display: block"/>
+        </button>
+    </div>
+
+    <div class="search">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="M21 21l-4.3-4.3"/>
+        </svg>
+        <input id="search" type="search" placeholder="글 검색"/>
+    </div>
+
+    <div id="catList" class="cat-list"></div>
+    <div class="section-label">글 목록</div>
+    <div id="postList" class="cat-list pt0"></div>
+</aside>

@@ -1,0 +1,80 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block css %}
+<!-- 외부 CSS 호출 -->
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block main %}
+</head>
+<body>
+<div id="app" class="app">
+    <!-- Sidebar -->
+    {% include 'base/index/sidebar.html' %}
+
+    <!-- Main -->
+    <main class="main">
+        <div class="topbar">
+            <div class="topbar-inner">
+                <button id="btnEditTitle" class="title-btn grow">
+                    <h1 id="blogTitleH1">나의 블로그</h1>
+                </button>
+                <button id="btnTheme" class="ghost" title="라이트/다크 전환">
+                    <img src="{% static 'img/themeIcon.svg' %}" alt="Theme Icon" class="icon" id="themeIcon-dark"
+                         style="display: none"/>
+                    <img src="{% static 'img/themeIcon-white.svg' %}" alt="Theme Icon" class="icon" id="themeIcon-light"
+                         style="display: block"/>
+                </button>
+            </div>
+        </div>
+
+        <section class="hero">
+            <div id="heroImg" class="hero-img"></div>
+            <div class="hero-overlay"></div>
+            <div class="hero-inner">
+                <div class="hero-content">
+                    <h2 id="heroTitle" class="hero-title">나의 블로그</h2>
+                    <button id="btnBanner" class="btn">배너 편집</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="content">
+            <div id="emptyHint" class="card card-body hidden text-center">
+                <h3 style="margin:0 0 8px; font-weight:800;">아직 선택된 글이 없습니다</h3>
+                <div class="muted">왼쪽 카테고리 옆 <b>＋</b> 아이콘으로 글을 추가해보세요.</div>
+            </div>
+
+            <article id="article" class="article hidden">
+                <div class="muted" id="articleMeta"></div>
+                <h2 id="articleTitle">제목</h2>
+                <div class="card">
+                    <div id="articleBody" class="card-body"></div>
+                </div>
+                <div class="row" style="justify-content:space-between; align-items:center;">
+                    <div id="articleDate" class="muted"></div>
+                    <button id="btnDeletePost" class="ghost danger">🗑 글 삭제</button>
+                </div>
+            </article>
+        </div>
+    </main>
+</div>
+
+
+{% endblock %}
+
+{% block modal %}
+<!-- Dialogs -->
+{% include 'base/modal.html' %}
+{% endblock %}
+
+
+{% block script %}
+<script src="{% static 'js/modal.js' %}"></script>
+<script src="{% static 'js/sidebar.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
+{% endblock %}
+
+</body>
+</html>

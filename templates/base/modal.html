@@ -1,0 +1,54 @@
+<!-- Dialogs -->
+        <dialog id="dlgTitle">
+            <div class="dlg-hd">블로그 제목 편집</div>
+            <form method="dialog" class="dlg-bd">
+                <label>제목<input id="inpTitle" class="input"/></label>
+            </form>
+            <div class="dlg-ft">
+                <button class="btn" onclick="document.getElementById('dlgTitle').close()">취소</button>
+                <button id="saveTitle" class="btn">저장</button>
+            </div>
+        </dialog>
+
+        <dialog id="dlgBanner">
+            <div class="dlg-hd">배너 편집</div>
+            <form method="dialog" class="dlg-bd">
+                <label>배너 이미지 URL<input id="inpBannerUrl" class="input" placeholder="https://example.com/hero.jpg"/></label>
+                <label>파일 업로드(선택)<input id="inpBannerFile" type="file" accept="image/*" class="input"/></label>
+                <div class="row">
+                    <label style="flex:1">배너 높이(px)<input id="inpBannerH" type="number" min="140" max="560"
+                                                          class="input"/></label>
+                </div>
+                <div class="muted">업로드 파일은 이 브라우저에만 저장됩니다(LocalStorage).</div>
+            </form>
+            <div class="dlg-ft">
+                <button class="btn" onclick="document.getElementById('dlgBanner').close()">취소</button>
+                <button id="saveBanner" class="btn">저장</button>
+            </div>
+        </dialog>
+
+        <dialog id="dlgCat">
+            <div class="dlg-hd">카테고리 추가</div>
+            <form method="dialog" class="dlg-bd" onsubmit="return false;">
+                <label>이름<input id="inpCatName" class="input" placeholder="예: 여행"/></label>
+            </form>
+            <div class="dlg-ft">
+                <button class="btn" onclick="document.getElementById('dlgCat').close()">취소</button>
+                <button id="saveCat" class="btn">추가</button>
+            </div>
+        </dialog>
+
+        <dialog id="dlgPost">
+            <div class="dlg-hd">새 글 작성</div>
+            <form method="dialog" class="dlg-bd">
+                <label>제목<input id="inpPostTitle" class="input" placeholder="멋진 글 제목"/></label>
+                <label>카테고리<select id="selPostCat" class="select"></select></label>
+                <label>내용 (Markdown 지원)
+                    <textarea id="inpPostBody" class="textarea" placeholder="여기에 내용을 작성하세요. Markdown 지원"></textarea>
+                </label>
+            </form>
+            <div class="dlg-ft">
+                <button class="btn" onclick="document.getElementById('dlgPost').close()">취소</button>
+                <button id="savePost" class="btn">게시</button>
+            </div>
+        </dialog>

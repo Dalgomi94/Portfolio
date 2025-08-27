@@ -1,0 +1,21 @@
+{% load static %}
+{% load i18n %}
+
+
+<!doctype html>
+<html lang="ko" data-theme="light">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>index Blog</title>
+        {% block css %}{% endblock %}
+        {% block headscript %}{% endblock %}
+
+
+    </head>
+    <body>
+    {% block main %}{% endblock %}
+    {% block modal %}{% endblock %}
+    {% block script %}{% endblock %}
+    </body>
+</html>
