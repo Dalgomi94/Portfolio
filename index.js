@@ -22,7 +22,7 @@ const state = {
     blogTitle: initial?.blogTitle || '나의 블로그',
     bannerUrl: initial?.bannerUrl || '',
     bannerHeight: initial?.bannerHeight || 220,
-    categories: initial?.categories || [{id: 'all', name: '전체'}, {id: uid(), name: '일상'}, {id: uid(), name: '개발'}],
+    categories: initial?.categories || [{id: 'all', name: '전체'}, {id: uid(), name: '일상'}, {id: uid(), name: '개발'}, {id: uid(), name: '여행'}],
     posts: initial?.posts || [{
         id: uid(),
         title: '첫 글 예시',
