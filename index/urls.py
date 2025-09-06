@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path("ajax/test/", views.index_ajax, name="test_ajax"),
+    path("ajax/index_data_save", views.ajax_index_data_save, name="ajax_index_data_save"),
 ]

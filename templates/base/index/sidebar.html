@@ -24,7 +24,17 @@
         <input id="search" type="search" placeholder="글 검색"/>
     </div>
 
-    <div id="catList" class="cat-list"></div>
+    <div id="catList" class="cat-list">
+        {% for i in categories %}
+        <div class="cat-item {% if index_info.current_category_seq == i.seq %}active{% endif %}" data-cid="{{ i.seq }}">
+        <span class="name">{{ i.name }}</span>
+        <span class="cat-actions">
+            <button class="add-post" title="글 추가">＋</button>
+            <button class="del-cat" title="카테고리 삭제">🗑</button>
+        </span>
+      </div>
+        {% endfor %}
+    </div>
     <div class="section-label">글 목록</div>
     <div id="postList" class="cat-list pt0"></div>
 </aside>
