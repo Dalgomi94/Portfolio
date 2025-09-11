@@ -36,7 +36,6 @@ $('.cat-item').on('click', function (e)
       ele = $($(e.target).parent().parent()[0]);
       seq = parseInt(ele.data('cid'));
     }
-    
 
     $.ajax({
       url: 'ajax/index_data_save',

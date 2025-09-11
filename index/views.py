@@ -36,7 +36,7 @@ def index(request):
         "categories": cat_data,
         "contents": cont_data
     }
-
+    
     return render(request, "index.html", data)
 
 @csrf_exempt
