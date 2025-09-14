@@ -44,6 +44,7 @@ $('.cat-item').on('click', function (e)
         seq: seq
       },
       success: function (response) {
+        $('.CONTENT_SECTION')[0].innerHTML = response.content;
         ele.siblings().removeClass('active');
         ele.addClass('active');
       },

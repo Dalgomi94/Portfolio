@@ -21,20 +21,34 @@ def index(request):
                 'theme' : 'dark'
             }
             request.session['index'] = _index_data
+        req = {
+            'target': _index_data['current_category_seq']
+        }
 
         # 콘텐츠
-        cont = requests.post(f"http://127.0.0.1:8080/get/content/list", timeout=5)
-        print("cont status:", cont.status_code, "body:", cont.text[:300])
-        cont.raise_for_status()
-        cont_data = cont.json()
-
+        contents_response = requests.post(f"http://127.0.0.1:8080/get/content/list", params=req, timeout=5)
+        contents = None
+        if contents_response.status_code == 200:
+            contents = contents_response.json()
     except Exception as e:
         return HttpResponse(f"backend error: {e}", status=502)
+
+    # 유져
+    users = []
+    try:
+        users_resp = requests.post("http://127.0.0.1:8080/get/user/list", params={}, timeout=5)
+        print("users status:", users_resp.status_code, "body:", users_resp.text[:300])
+        users_resp.raise_for_status()
+        users = users_resp.json()
+    except Exception as ue:
+        print("users fetch error:", ue)
+
 
     data = {
         "index_info": _index_data,
         "categories": cat_data,
-        "contents": cont_data
+        "contents": contents,
+        "users": users
     }
     
     return render(request, "index.html", data)
@@ -47,4 +61,24 @@ def ajax_index_data_save(request):
         _index_data['current_category_seq'] = int(seq)
         request.session['index'] = _index_data
     print('_index_data: ', request.session.get('index'))
-    return JsonResponse({'status' : 200})
+
+    req = {
+            'target': seq
+        }
+    contents_response = requests.post(f"http://127.0.0.1:8080/get/content/list", params=req, timeout=5)
+    res = {'status': 200, 'content': ''}
+    if contents_response.status_code == 200:
+        contents = contents_response.json()
+        _ren = render(request, "contents.html", {'contents': contents})
+        res['content'] = _ren.content.decode('utf-8')
+    return JsonResponse(res)
+
+import requests
+base = "http://127.0.0.1:8080"  # 실제 FastAPI 호스트/포트로
+r = requests.get(f"{base}/openapi.json", timeout=5)
+print("openapi:", r.status_code)
+if r.ok:
+    paths = list(r.json().get("paths", {}).keys())
+    print("=== FASTAPI PATHS ===")
+    for p in paths[:200]:
+        print(p)
